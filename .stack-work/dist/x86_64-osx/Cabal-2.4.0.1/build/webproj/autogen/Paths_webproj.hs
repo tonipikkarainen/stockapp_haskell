@@ -29,12 +29,12 @@ version :: Version
 version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "/Users/tonipikkarainen/stock/webapp/webproj/.stack-work/install/x86_64-osx/b669027655417d940e27ef4137f454ed49f6e4bccc36af5476f14bb397c9e86b/8.6.5/bin"
-libdir     = "/Users/tonipikkarainen/stock/webapp/webproj/.stack-work/install/x86_64-osx/b669027655417d940e27ef4137f454ed49f6e4bccc36af5476f14bb397c9e86b/8.6.5/lib/x86_64-osx-ghc-8.6.5/webproj-0.1.0.0-3cHTeEq2kvX8nKEz2kQaFb-webproj"
-dynlibdir  = "/Users/tonipikkarainen/stock/webapp/webproj/.stack-work/install/x86_64-osx/b669027655417d940e27ef4137f454ed49f6e4bccc36af5476f14bb397c9e86b/8.6.5/lib/x86_64-osx-ghc-8.6.5"
-datadir    = "/Users/tonipikkarainen/stock/webapp/webproj/.stack-work/install/x86_64-osx/b669027655417d940e27ef4137f454ed49f6e4bccc36af5476f14bb397c9e86b/8.6.5/share/x86_64-osx-ghc-8.6.5/webproj-0.1.0.0"
-libexecdir = "/Users/tonipikkarainen/stock/webapp/webproj/.stack-work/install/x86_64-osx/b669027655417d940e27ef4137f454ed49f6e4bccc36af5476f14bb397c9e86b/8.6.5/libexec/x86_64-osx-ghc-8.6.5/webproj-0.1.0.0"
-sysconfdir = "/Users/tonipikkarainen/stock/webapp/webproj/.stack-work/install/x86_64-osx/b669027655417d940e27ef4137f454ed49f6e4bccc36af5476f14bb397c9e86b/8.6.5/etc"
+bindir     = "/Users/tonipikkarainen/stock/webapp/webproj/.stack-work/install/x86_64-osx/8736ad79c9f7b9984fcf2a4299a08a3625a24750741c6af24ac15dd8459b54b7/8.6.5/bin"
+libdir     = "/Users/tonipikkarainen/stock/webapp/webproj/.stack-work/install/x86_64-osx/8736ad79c9f7b9984fcf2a4299a08a3625a24750741c6af24ac15dd8459b54b7/8.6.5/lib/x86_64-osx-ghc-8.6.5/webproj-0.1.0.0-GdvU9qbNX86HluLV9FqRyI-webproj"
+dynlibdir  = "/Users/tonipikkarainen/stock/webapp/webproj/.stack-work/install/x86_64-osx/8736ad79c9f7b9984fcf2a4299a08a3625a24750741c6af24ac15dd8459b54b7/8.6.5/lib/x86_64-osx-ghc-8.6.5"
+datadir    = "/Users/tonipikkarainen/stock/webapp/webproj/.stack-work/install/x86_64-osx/8736ad79c9f7b9984fcf2a4299a08a3625a24750741c6af24ac15dd8459b54b7/8.6.5/share/x86_64-osx-ghc-8.6.5/webproj-0.1.0.0"
+libexecdir = "/Users/tonipikkarainen/stock/webapp/webproj/.stack-work/install/x86_64-osx/8736ad79c9f7b9984fcf2a4299a08a3625a24750741c6af24ac15dd8459b54b7/8.6.5/libexec/x86_64-osx-ghc-8.6.5/webproj-0.1.0.0"
+sysconfdir = "/Users/tonipikkarainen/stock/webapp/webproj/.stack-work/install/x86_64-osx/8736ad79c9f7b9984fcf2a4299a08a3625a24750741c6af24ac15dd8459b54b7/8.6.5/etc"
 
 getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "webproj_bindir") (\_ -> return bindir)

@@ -46,6 +46,27 @@ packages:
       sha256: e0c8e85d0fce0a307ef5c52f9e00beebc3a79f984338ec088e9e6f15a2879209
   original:
     hackage: Spock-lucid-0.4.0.1@sha256:fa2c6ae737bad26767820af29c913140a657acbf745e90c9f9d4a184953855dc,1117
+- completed:
+    hackage: Chart-cairo-1.9.3@sha256:05cecda5743954e43c8eabea788e0c19300c305346febee727ce578f69e30748,879
+    pantry-tree:
+      size: 238
+      sha256: e00876230cd7553283f0cf6e437709c6e0e81f7166d20b251329ae76ff7d2462
+  original:
+    hackage: Chart-cairo-1.9.3@sha256:05cecda5743954e43c8eabea788e0c19300c305346febee727ce578f69e30748,879
+- completed:
+    hackage: cairo-0.13.8.0@sha256:9b64a376ebaa4f153bba5866a32291fd4bed48147009cce9158ce6533928eba8,4075
+    pantry-tree:
+      size: 2830
+      sha256: 07aeb4b5eaa1d8201f67f4b8011aaf182ceb4e558066e59d482485fc02895994
+  original:
+    hackage: cairo-0.13.8.0@sha256:9b64a376ebaa4f153bba5866a32291fd4bed48147009cce9158ce6533928eba8,4075
+- completed:
+    hackage: gtk2hs-buildtools-0.13.8.0@sha256:132f38155fc677430a47ea750918973161c876fb6f281d342ac2f07eb99229ce,5238
+    pantry-tree:
+      size: 3588
+      sha256: 4552e3c0f2ef0f16285c38898d7e2b6aeea67d4e37cd203b0c82f70592096c45
+  original:
+    hackage: gtk2hs-buildtools-0.13.8.0@sha256:132f38155fc677430a47ea750918973161c876fb6f281d342ac2f07eb99229ce,5238
 snapshots:
 - completed:
     size: 524162

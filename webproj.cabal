@@ -24,4 +24,4 @@ executable webproj
                     , mtl
                     , lucid
                     , Spock-lucid,aeson,bytestring,
-                        http-conduit
+                        http-conduit,Chart,Chart-cairo,time,Spock-core,wai-middleware-static

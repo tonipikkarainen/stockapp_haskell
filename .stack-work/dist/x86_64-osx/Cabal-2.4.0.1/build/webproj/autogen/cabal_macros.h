@@ -11,6 +11,28 @@
   (major1) == 0 && (major2) == 1 && (minor) <= 0)
 #endif /* MIN_VERSION_webproj */
 
+/* package Chart-1.9.3 */
+#ifndef VERSION_Chart
+#define VERSION_Chart "1.9.3"
+#endif /* VERSION_Chart */
+#ifndef MIN_VERSION_Chart
+#define MIN_VERSION_Chart(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  9 || \
+  (major1) == 1 && (major2) == 9 && (minor) <= 3)
+#endif /* MIN_VERSION_Chart */
+
+/* package Chart-cairo-1.9.3 */
+#ifndef VERSION_Chart_cairo
+#define VERSION_Chart_cairo "1.9.3"
+#endif /* VERSION_Chart_cairo */
+#ifndef MIN_VERSION_Chart_cairo
+#define MIN_VERSION_Chart_cairo(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  9 || \
+  (major1) == 1 && (major2) == 9 && (minor) <= 3)
+#endif /* MIN_VERSION_Chart_cairo */
+
 /* package Spock-0.13.0.0 */
 #ifndef VERSION_Spock
 #define VERSION_Spock "0.13.0.0"
@@ -21,6 +43,17 @@
   (major1) == 0 && (major2) <  13 || \
   (major1) == 0 && (major2) == 13 && (minor) <= 0)
 #endif /* MIN_VERSION_Spock */
+
+/* package Spock-core-0.13.0.0 */
+#ifndef VERSION_Spock_core
+#define VERSION_Spock_core "0.13.0.0"
+#endif /* VERSION_Spock_core */
+#ifndef MIN_VERSION_Spock_core
+#define MIN_VERSION_Spock_core(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  13 || \
+  (major1) == 0 && (major2) == 13 && (minor) <= 0)
+#endif /* MIN_VERSION_Spock_core */
 
 /* package Spock-lucid-0.4.0.1 */
 #ifndef VERSION_Spock_lucid
@@ -121,6 +154,39 @@
   (major1) == 1 && (major2) == 2 && (minor) <= 3)
 #endif /* MIN_VERSION_text */
 
+/* package time-1.8.0.2 */
+#ifndef VERSION_time
+#define VERSION_time "1.8.0.2"
+#endif /* VERSION_time */
+#ifndef MIN_VERSION_time
+#define MIN_VERSION_time(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  8 || \
+  (major1) == 1 && (major2) == 8 && (minor) <= 0)
+#endif /* MIN_VERSION_time */
+
+/* package wai-middleware-static-0.8.2 */
+#ifndef VERSION_wai_middleware_static
+#define VERSION_wai_middleware_static "0.8.2"
+#endif /* VERSION_wai_middleware_static */
+#ifndef MIN_VERSION_wai_middleware_static
+#define MIN_VERSION_wai_middleware_static(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  8 || \
+  (major1) == 0 && (major2) == 8 && (minor) <= 2)
+#endif /* MIN_VERSION_wai_middleware_static */
+
+/* tool alex-3.2.5 */
+#ifndef TOOL_VERSION_alex
+#define TOOL_VERSION_alex "3.2.5"
+#endif /* TOOL_VERSION_alex */
+#ifndef MIN_TOOL_VERSION_alex
+#define MIN_TOOL_VERSION_alex(major1,major2,minor) (\
+  (major1) <  3 || \
+  (major1) == 3 && (major2) <  2 || \
+  (major1) == 3 && (major2) == 2 && (minor) <= 5)
+#endif /* MIN_TOOL_VERSION_alex */
+
 /* tool gcc-4.2.1 */
 #ifndef TOOL_VERSION_gcc
 #define TOOL_VERSION_gcc "4.2.1"
@@ -164,6 +230,17 @@
   (major1) == 2 && (major2) <  22 || \
   (major1) == 2 && (major2) == 22 && (minor) <= 0)
 #endif /* MIN_TOOL_VERSION_haddock */
+
+/* tool happy-1.19.12 */
+#ifndef TOOL_VERSION_happy
+#define TOOL_VERSION_happy "1.19.12"
+#endif /* TOOL_VERSION_happy */
+#ifndef MIN_TOOL_VERSION_happy
+#define MIN_TOOL_VERSION_happy(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  19 || \
+  (major1) == 1 && (major2) == 19 && (minor) <= 12)
+#endif /* MIN_TOOL_VERSION_happy */
 
 /* tool hpc-0.67 */
 #ifndef TOOL_VERSION_hpc
@@ -210,7 +287,7 @@
 #endif /* MIN_TOOL_VERSION_runghc */
 
 #ifndef CURRENT_COMPONENT_ID
-#define CURRENT_COMPONENT_ID "webproj-0.1.0.0-3cHTeEq2kvX8nKEz2kQaFb-webproj"
+#define CURRENT_COMPONENT_ID "webproj-0.1.0.0-GdvU9qbNX86HluLV9FqRyI-webproj"
 #endif /* CURRENT_COMPONENT_ID */
 #ifndef CURRENT_PACKAGE_VERSION
 #define CURRENT_PACKAGE_VERSION "0.1.0.0"

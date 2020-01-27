@@ -12,12 +12,21 @@ import Data.IORef
 import Control.Monad (forM_)
 import Control.Monad.IO.Class (liftIO)
 import Data.Semigroup ((<>))
-import Data.Aeson
+import Data.Aeson -- hiding --('.=') 
 import GHC.Generics
 import Data.Maybe
 
+import Data.Time
+
+
 import qualified Data.ByteString.Lazy as B
 import Network.HTTP.Conduit (simpleHttp)
+
+import Graphics.Rendering.Chart.Easy
+import Graphics.Rendering.Chart.Backend.Cairo
+
+import Web.Spock.Action
+import Network.Wai.Middleware.Static
 
 tags :: [Text]
 tags=["roe", "marketcap","bookvaluepershare","ebitdagrowth","ebitgrowth","epsgrowth","fcffgrowth","netincomegrowth",
@@ -34,6 +43,8 @@ api_ref = "api_key="
 url_comp :: Text
 url_comp = "https://api-v2.intrinio.com/companies"
 
+--TODO: 
+-- * plot, state (ok), exception, wiser json download
 
 -- Exception handling for bad urlS!!!!
 getCOMP :: IO B.ByteString
@@ -84,7 +95,7 @@ instance ToJSON Historical
 -- The definition of a Spock application lives in the SpockM conn sess st a monad
 -- You can think of it as a Writer monad
 -- To connect an URL to an action, we use routes
-type Server a = SpockM () () () a 
+type Server a = SpockM () () Companies a 
 
 -- type of get and post etc..
 --type RouteSpec xs ps ctx conn sess st = 
@@ -110,9 +121,24 @@ page =
 
 app :: Server ()
 app = do
+  --middleware (staticPolicy (addBase "static"))
+  middleware $ staticPolicy $ addBase "static"
   get root $ do
     -- Getting companies from api
-    dat <- liftIO ((eitherDecode <$> getCOMP) :: IO (Either String Companies))
+    st <- companies <$> getState -- >>= return
+    lucid $  do 
+          page
+          h1_ "Companies:"
+          form_ [method_ "post"] $ do
+              label_ $ do
+                "Choose company: "
+                select_ [name_ "company"] $ forM_ st $ \item -> li_ $   
+                        do
+                         case name item of
+                           Just x -> option_ [value_ (fromJust (ticker item))] (toHtml (x))
+                           Nothing -> option_ [value_ ""] ( toHtml ("tyhjä" :: Text))
+              input_ [type_ "submit", value_ "Choose"]
+    {- dat <- liftIO ((eitherDecode <$> getCOMP) :: IO (Either String Companies))
     case dat of 
       Left e -> lucid $ do
                   h1_ "Ei löydy"
@@ -127,16 +153,21 @@ app = do
                                case name item of
                                  Just x -> option_ [value_ (fromJust (ticker item))] (toHtml (x))
                                  Nothing -> option_ [value_ ""] ( toHtml ("tyhjä" :: Text))
-                    input_ [type_ "submit", value_ "Choose"]
+                    input_ [type_ "submit", value_ "Choose"]-}
   post root $ do
     a <- param' "company"
-    dat <- liftIO ((eitherDecode <$> getHistorical a "roe") :: IO (Either String Historical))
+    let tag = (pack "marketcap")
+    dat <- liftIO ((eitherDecode <$> getHistorical a tag) :: IO (Either String Historical))
+    
     case dat of 
       Left e -> lucid $ do
                   h1_ "Ei löydy dataa"
-      Right d -> lucid $  do 
-                page
+      Right d -> do 
+        liftIO $ plot_test a tag
+        lucid $  do 
+                page            
                 h1_ (toHtml (a :: Text))
+                img_ [src_ "plot.png", height_ "400", width_ "400"]
                 ul_ $ forM_ (historical_data d)  $ \item -> li_ $ do
                     case (value item) of 
                       Just x -> do 
@@ -147,21 +178,54 @@ app = do
                     
 main :: IO ()
 main = do
+  -- st <- return $ Companies []
+  --middleware (staticPolicy (addBase "static"))
+  st <- ((eitherDecode <$> getCOMP) :: IO (Either String Companies))
+  case st of 
+    Left e ->  do
+      cfg <- defaultSpockCfg () PCNoDatabase (Companies [])
+      runSpock 8080 (spock cfg app)
+    Right st -> do 
+      cfg <- defaultSpockCfg () PCNoDatabase st
+      runSpock 8080 (spock cfg app)
+  
   -- serverstate menee IO:n sisälle:
   --st <- ServerState <$> newIORef [Note "t" "1", Note "b" "2"]
   -- defaultSpockCfg :: sess -> PoolOrConn conn -> st -> IO (SpockCfg conn sess st)
-  cfg <- defaultSpockCfg () PCNoDatabase ()
+  --cfg <- defaultSpockCfg () PCNoDatabase st
   -- spock :: forall conn sess st. SpockCfg conn sess st -> SpockM conn sess st () -> IO Middleware
   -- runSpock :: Port -> IO Middleware -> IO ()
-  runSpock 8080 (spock cfg app)
+  --runSpock 8080 (spock cfg app)
 
 
 
 
-{- {"historical_data":[{"date":"2018-12-31","value":0.097455},{"date":"2017-12-31","value":0.06262},
-{"date":"2016-12-31","value":-0.002868},{"date":"2015-12-31","value":0.03038},
-{"date":"2014-12-31","value":0.125955},{"date":"2013-12-31","value":0.149844},
-{"date":"2012-12-31","value":0.202574},{"date":"2011-12-31","value":0.236921},
-{"date":"2010-12-31","value":0.19293},{"date":"2009-12-31","value":0.117577},
-{"date":"2008-12-31","value":null},{"date":"2007-12-31","value":null}],"company":
-{"id":"com_DzonXe","ticker":"CVX","name":"Chevron Corp","lei":null,"cik":"0000093410"},"next_page":null} -}
+
+
+hist_test :: Historical -> [(UTCTime, Double)]
+hist_test xs =  f (historical_data xs) where
+  --let timeFromString = parseTimeOrError True defaultTimeLocale "%Y-%m-%d" dateString :: UTCTime
+  f [] = []
+  f (y:ys) = case date y of 
+    Just d -> case value y of 
+      Just v -> (parseTimeOrError True defaultTimeLocale "%Y-%m-%d" (unpack d) :: UTCTime,v): (f ys)
+      Nothing -> f ys
+    Nothing -> f ys
+
+-- 2018-12-31
+plot_test :: Text -> Text -> IO ()
+plot_test comp tag= do
+  dat <- ((eitherDecode <$> getHistorical comp tag) :: IO (Either String Historical))
+  toFile def "static/plot.png" $ do
+    --x <- lift dat 
+    layout_title Graphics.Rendering.Chart.Easy..= (unpack comp) ++ " " ++ (unpack tag)
+    case dat of 
+      Left e -> do 
+        setColors [opaque blue, opaque red]
+        plot (line "am" [])
+        --plot (points "am points" (signal_ [0,7..400]))
+      Right st -> do 
+        setColors [opaque blue, opaque red]
+        --plot (line "am" ([] :: [(Double,Double)]))
+        plot (line "" [(hist_test st)])
+  
