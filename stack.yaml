@@ -44,6 +44,7 @@ extra-deps:
   - Chart-cairo-1.9.3@sha256:05cecda5743954e43c8eabea788e0c19300c305346febee727ce578f69e30748,879
   - cairo-0.13.8.0@sha256:9b64a376ebaa4f153bba5866a32291fd4bed48147009cce9158ce6533928eba8,4075
   - gtk2hs-buildtools-0.13.8.0@sha256:132f38155fc677430a47ea750918973161c876fb6f281d342ac2f07eb99229ce,5238
+  - average-0.6.1@sha256:90c8c1d4ece76a1f1b43f1a6bef7ba15340a2bec8e2efbb465884d6b50b5d174,849
   # - acme-missiles-0.3
 # - git: https://github.com/commercialhaskell/stack.git
 #   commit: e7b331f14bcffb8367cd58fbfc8b40ec7642100a

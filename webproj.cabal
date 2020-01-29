@@ -19,9 +19,16 @@ executable webproj
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
                       , Spock
-                    , http-types
-                    , text
-                    , mtl
-                    , lucid
-                    , Spock-lucid,aeson,bytestring,
-                        http-conduit,Chart,Chart-cairo,time,Spock-core,wai-middleware-static
+                      , http-types
+                      , text
+                      , mtl
+                      , lucid
+                      , Spock-lucid,aeson,bytestring
+                      , http-conduit
+                      ,Chart
+                      ,Chart-cairo
+                      ,time
+                      ,Spock-core
+                      ,wai-middleware-static
+                      ,average
+

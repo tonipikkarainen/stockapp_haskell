@@ -67,6 +67,13 @@ packages:
       sha256: 4552e3c0f2ef0f16285c38898d7e2b6aeea67d4e37cd203b0c82f70592096c45
   original:
     hackage: gtk2hs-buildtools-0.13.8.0@sha256:132f38155fc677430a47ea750918973161c876fb6f281d342ac2f07eb99229ce,5238
+- completed:
+    hackage: average-0.6.1@sha256:90c8c1d4ece76a1f1b43f1a6bef7ba15340a2bec8e2efbb465884d6b50b5d174,849
+    pantry-tree:
+      size: 217
+      sha256: 92e7a2f5c6cd377caa5db8e985b54c1253b96a4f94e27a275fa9b3d0f61688d6
+  original:
+    hackage: average-0.6.1@sha256:90c8c1d4ece76a1f1b43f1a6bef7ba15340a2bec8e2efbb465884d6b50b5d174,849
 snapshots:
 - completed:
     size: 524162

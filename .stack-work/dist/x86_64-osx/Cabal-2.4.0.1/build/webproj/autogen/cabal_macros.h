@@ -77,6 +77,17 @@
   (major1) == 1 && (major2) == 4 && (minor) <= 6)
 #endif /* MIN_VERSION_aeson */
 
+/* package average-0.6.1 */
+#ifndef VERSION_average
+#define VERSION_average "0.6.1"
+#endif /* VERSION_average */
+#ifndef MIN_VERSION_average
+#define MIN_VERSION_average(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  6 || \
+  (major1) == 0 && (major2) == 6 && (minor) <= 1)
+#endif /* MIN_VERSION_average */
+
 /* package base-4.12.0.0 */
 #ifndef VERSION_base
 #define VERSION_base "4.12.0.0"
@@ -287,7 +298,7 @@
 #endif /* MIN_TOOL_VERSION_runghc */
 
 #ifndef CURRENT_COMPONENT_ID
-#define CURRENT_COMPONENT_ID "webproj-0.1.0.0-GdvU9qbNX86HluLV9FqRyI-webproj"
+#define CURRENT_COMPONENT_ID "webproj-0.1.0.0-6PwpRuNQBCi6IgeqqYPCpP-webproj"
 #endif /* CURRENT_COMPONENT_ID */
 #ifndef CURRENT_PACKAGE_VERSION
 #define CURRENT_PACKAGE_VERSION "0.1.0.0"
